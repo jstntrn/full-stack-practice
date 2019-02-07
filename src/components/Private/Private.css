@@ -1,0 +1,10 @@
+.Private {
+    color: grey;
+}
+
+.private-logo {
+    padding: 25px;
+    margin-top: 30px;
+    filter: invert(10%);
+    height: 150px;
+}

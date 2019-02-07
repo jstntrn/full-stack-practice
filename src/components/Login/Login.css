@@ -1,7 +1,24 @@
-button{
+.Login {
+    margin-top: 10px;
+}
+
+button {
     background: none;
     background-color: grey;
     color: white;
     border: none;
     border-radius: 5px;
+    padding: 5px;
+    margin: 1px;
+}
+
+input {
+    margin: 1px;
+}
+
+.login-logo {
+    padding: 25px;
+    margin-top: 30px;
+    filter: invert(10%);
+    height: 400px;
 }

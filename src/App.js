@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {HashRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -13,7 +13,7 @@ class App extends Component {
         <div className="App">
         <Provider store={store}>
           <div className='login-wrapper'>
-            <img className='App-logo' src={logo} alt='logo'/> 
+            {/* <img className='App-logo' src={logo} alt='logo'/>  */}
             <Router>{routes}</Router>
           </div>
         </Provider>

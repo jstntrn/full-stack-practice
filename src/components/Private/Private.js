@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import logo from './../../logo.svg';
 import {updateUser} from './../../ducks/reducer'
+import './Private.css'
 
 class Private extends Component {
     constructor(props){
@@ -20,22 +22,43 @@ class Private extends Component {
             .then(res => {
                 //dont move
                 //add to redux
-                this.props.updateUser(res.data)
+                this.props.updateUser(res.data);
             })
             .catch(err => {
                 //boot to other page
+                this.props.updateUser({});
+                this.props.history.push('/');
             })
         } else {
             // dont move
         }
     }
 
+    logout(){
+        axios.post('/auth/logout')
+        .then(res => {
+            this.props.history.push('/');
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     render(){
         console.log(this.props)
+        const { id, username, profile_pic, balance } = this.state;
         return (
-            <div className='Private'>
-                this is the Private Component
+            <div>
+                <img className='private-logo' src={logo} alt='logo'/> 
+                <div className='Private'>
+                    <img src={profile_pic} alt='profile' />
+                    <h1>Welcome {username}</h1>
+                    <p>Account Number: {id}</p>
+                    <p>Current Balance: ${balance}</p>
+                    <button onClick={() => this.logout()}>Logout</button>
+                </div>
             </div>
+
         )
     }
 }
