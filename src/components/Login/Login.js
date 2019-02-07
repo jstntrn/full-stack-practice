@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { updateUser } from './../../ducks/reducer';
+import './Login.css';
 
 class Login extends Component {
     constructor(props){
@@ -10,6 +11,25 @@ class Login extends Component {
         this.state = {
             username: '',
             password: ''
+        }
+    }
+
+    componentDidMount(){
+        const { id } = this.props;
+        if(id){
+            //boot to other page
+            this.props.history.push('/private')
+        } else {
+            //double check sessions
+            axios.get('/api/user')
+            .then(res => {
+                // boot to other page
+                this.props.updateUser(res.data)
+                this.props.history.push('./private')
+            })
+            .catch(err => {
+                //don't move
+            })
         }
     }
 
@@ -25,6 +45,7 @@ class Login extends Component {
         .then(res => {
             console.log(res)
             this.props.updateUser(res.data)
+            this.props.history.push('/private');
         })
         .catch((err) => console.log(err))
     }
@@ -34,6 +55,8 @@ class Login extends Component {
         axios.post('/auth/login', { username, password })
         .then(res => {
             console.log(res)
+            this.props.updateUser(res.data)
+            this.props.history.push('/private');
         })
         .catch((err) => console.log(err))
     }

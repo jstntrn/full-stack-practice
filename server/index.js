@@ -21,3 +21,5 @@ massive(DB_CONNECTION).then(db => {
 
 app.post('/auth/register', ctrl.register)
 app.post('/auth/login', ctrl.login)
+
+app.get('/api/user', ctrl.getUser)
