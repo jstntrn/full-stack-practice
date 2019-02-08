@@ -6,5 +6,11 @@
     padding: 25px;
     margin-top: 30px;
     filter: invert(10%);
-    height: 150px;
+    height: 200px;
+}
+
+.logout {
+    padding: 10px;
+    font-size: 20px;
+    margin-top: 12px;
 }

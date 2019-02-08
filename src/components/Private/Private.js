@@ -8,10 +8,7 @@ import './Private.css'
 class Private extends Component {
     constructor(props){
         super(props);
-
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     componentDidMount(){
@@ -26,17 +23,17 @@ class Private extends Component {
             })
             .catch(err => {
                 //boot to other page
-                this.props.updateUser({});
                 this.props.history.push('/');
             })
         } else {
             // dont move
         }
     }
-
+    
     logout(){
         axios.post('/auth/logout')
         .then(res => {
+            this.props.updateUser({});
             this.props.history.push('/');
         })
         .catch(err => {
@@ -45,17 +42,16 @@ class Private extends Component {
     }
 
     render(){
-        console.log(this.props)
-        const { id, username, profile_pic, balance } = this.state;
+        const { id, username, profile_pic, balance } = this.props;
         return (
             <div>
                 <img className='private-logo' src={logo} alt='logo'/> 
                 <div className='Private'>
-                    <img src={profile_pic} alt='profile' />
-                    <h1>Welcome {username}</h1>
+                    {/* <img src={profile_pic} alt='profile' /> */}
+                    <h1>Welcome, {username}</h1>
                     <p>Account Number: {id}</p>
                     <p>Current Balance: ${balance}</p>
-                    <button onClick={() => this.logout()}>Logout</button>
+                    <button className='logout' onClick={() => this.logout()}>Logout</button>
                 </div>
             </div>
 

@@ -44,7 +44,6 @@ class Login extends Component {
         const { username, password } = this.state
         axios.post('/auth/register', { username, password })
         .then(res => {
-            console.log(res)
             this.props.updateUser(res.data)
             this.props.history.push('/private');
         })

@@ -17,10 +17,10 @@ module.exports = {
         const { session } = req;
         const db = req.app.get('db');
         let user = await db.user.login({username: username});
+        user = user[0];
         if(!user){
             return res.sendStatus(418);
         }
-        user = user[0];
         const foundUser = bcrypt.compareSync(password, user.password);
         if(foundUser){
             delete user.password;
